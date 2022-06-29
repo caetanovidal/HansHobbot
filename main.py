@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 intents = discord.Intents.default()
-intents.message_content = True
 client_discord = discord.Client(intents=intents)
 
 @client_discord.event
