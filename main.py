@@ -48,8 +48,11 @@ async def on_message(message):
             print(e)
 
     if message.content.startswith('!btc'):
-        msg = btc_request.request_helper()
-        await message.reply(msg)
+        try:
+            msg = btc_request.request_helper()
+            await message.reply(msg)
+        except Exception as e:
+            print(e)
 
     if message.content.startswith("!help"):
         msg = """
