@@ -8,7 +8,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client_discord = discord.Client()
+intents = discord.Intents.default()
+intents.message_content = True
+client_discord = discord.Client(intents=intents)
 
 @client_discord.event
 async def on_ready():
@@ -21,11 +23,11 @@ async def on_message(message):
         return
 
     if message.content.startswith('$hello'):
-        await message.channel.send('Hello motherfucker!')
+        await message.reply('Hello motherfucker!')
 
     if message.content.startswith('$inspire'):
         quote = get_quote()
-        await message.channel.send(quote)
+        await message.reply(quote)
 
     if message.content.startswith('!get'):
         msg = get_twitter_user(message.content)
@@ -41,13 +43,13 @@ async def on_message(message):
         msg = get_link_youtube(message.content)
         try:
             link = w2g_request.create_sala_w2g(msg)
-            await message.channel.send(link)
+            await message.reply(link)
         except Exception as e:
             print(e)
 
     if message.content.startswith('!btc'):
         msg = btc_request.request_helper()
-        await message.channel.send(msg)
+        await message.reply(msg)
 
     if message.content.startswith("!help"):
         msg = """
@@ -60,5 +62,6 @@ $inspire -> get a inspire quote
             await message.channel.send(msg)
         except Exception as e:
             print(e)
-
+            
 client_discord.run(os.getenv('DISCORD_KEY'))
+
