@@ -1,7 +1,7 @@
 import discord
 import os
 import twitter_request
-import w2g_request
+from w2g_request import create_sala_w2g, update_room
 import btc_request
 from helpers import get_twitter_user, get_quote, get_link_youtube
 from dotenv import load_dotenv
@@ -39,12 +39,14 @@ async def on_message(message):
             print(e)
 
     if message.content.startswith('!w2g'):
-        msg = get_link_youtube(message.content)
         try:
-            link = w2g_request.create_sala_w2g(msg)
-            await message.reply(link)
+            link_w2g = create_sala_w2g(message)
+            await message.reply(link_w2g)
         except Exception as e:
             print(e)
+    
+    if message.content.startswith('!upw2g'):
+        update_room(message)
 
     if message.content.startswith('!btc'):
         try:
@@ -65,5 +67,5 @@ $inspire -> get a inspire quote
         except Exception as e:
             print(e)
             
-client_discord.run(os.getenv('DISCORD_KEY'))
+client_discord.run(os.getenv('DISCORD_TEST_NET'))
 

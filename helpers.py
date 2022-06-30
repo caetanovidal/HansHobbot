@@ -18,5 +18,10 @@ def get_twitter_user(mensagem):
     return mensagem[index_aroba:]
 
 def get_link_youtube(msg):
-    msg = msg.replace(" ", "")
-    return msg[4:]
+    msg = msg.replace(" ", ".")
+    index_dot = 0
+    for word in msg:
+        index_dot += 1
+        if word == ".":
+            break
+    return msg[index_dot:]
