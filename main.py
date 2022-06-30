@@ -61,6 +61,7 @@ async def on_message(message):
 $inspire -> get a inspire quote
 !w2g youtube/link -> create a room with the youtube link that you pass
 !btc -> send a ticket with the btc value and variation
+!upw2g -> must be done by the same person how create the room using !w2g, updates the room with a new video
         """
         try:
             await message.channel.send(msg)
