@@ -73,4 +73,3 @@ $inspire -> get a inspire quote
             print(e)
             
 client_discord.run(os.getenv('DISCORD_KEY'))
-
