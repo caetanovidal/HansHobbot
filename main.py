@@ -15,7 +15,6 @@ class Hans_hobbot_replys(discord.Client):
         print('------')
     
     async def on_message(self, message):
-        
         if message.author.id == self.user.id:
             return
         
@@ -59,11 +58,11 @@ class Hans_hobbot_replys(discord.Client):
         if message.content.startswith("!help"):
             msg = """
             !get @twitterUser -> return the last tweet from that user
-    $inspire -> get a inspire quote
-    !w2g youtube/link -> create a room with the youtube link that you pass
-    !btc -> send a ticket with the btc value and variation
-    !upw2g -> must be done by the same person how create the room using !w2g, updates the room with a new video
-    !addw2g -> must be done by the same person how create the room using !w2g, add a new video to de queue
+!inspire -> get a inspire quote
+!w2g youtube/link -> create a room with the youtube link that you pass
+!btc -> send a ticket with the btc value and variation
+!upw2g -> must be done by the same person how create the room using !w2g, updates the room with a new video
+!addw2g -> must be done by the same person how create the room using !w2g, add a new video to de queue
             """
             try:
                 await message.channel.send(msg)
