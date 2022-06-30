@@ -40,7 +40,6 @@ def add_to_playlist(message):
         streak_key = dict_user_streamkey[message.author.id]
         url_post = f"https://w2g.tv/rooms/{streak_key}/playlists/current/playlist_items/sync_update"
         payloadJson = {"w2g_api_key": os.getenv('API_KEY_W2G'), "add_items": [{"url": url_video, "title": "Hello"}]}
-        response = requests.post(url_post, headers=payloadHeader, json=payloadJson)
-        print(response)
+        requests.post(url_post, headers=payloadHeader, json=payloadJson)
     except Exception as e:
         print(e)
