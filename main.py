@@ -1,7 +1,7 @@
 import discord
 import os
 import twitter_request
-from w2g_request import create_sala_w2g, update_room
+from w2g_request import create_sala_w2g, update_room, add_to_playlist
 import btc_request
 from helpers import get_twitter_user, get_quote, get_link_youtube
 from dotenv import load_dotenv
@@ -48,6 +48,9 @@ async def on_message(message):
     if message.content.startswith('!upw2g'):
         update_room(message)
 
+    if message.content.startswith('!addw2g'):
+        add_to_playlist(message)
+
     if message.content.startswith('!btc'):
         try:
             msg = btc_request.request_helper()
@@ -62,11 +65,12 @@ $inspire -> get a inspire quote
 !w2g youtube/link -> create a room with the youtube link that you pass
 !btc -> send a ticket with the btc value and variation
 !upw2g -> must be done by the same person how create the room using !w2g, updates the room with a new video
+!addw2g -> must be done by the same person how create the room using !w2g, add a new video to de queue
         """
         try:
             await message.channel.send(msg)
         except Exception as e:
             print(e)
             
-client_discord.run(os.getenv('DISCORD_TEST_NET'))
+client_discord.run(os.getenv('DISCORD_KEY'))
 
