@@ -73,4 +73,4 @@ class Hans_hobbot_replys(discord.Client):
     
 intents = discord.Intents.default()
 client_discord = Hans_hobbot_replys(intents=intents)       
-client_discord.run(os.getenv('DISCORD_TEST_NET'))
+client_discord.run(os.getenv('DISCORD_KEY'))
