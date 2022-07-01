@@ -9,7 +9,7 @@ def get_quote():
     return quote
 
 def get_twitter_user(mensagem):
-    mensagem = mensagem.replace(" ", "")
+    mensagem = mensagem.replace(" ", "@")
     index_aroba = 0
     for word in mensagem:
         index_aroba += 1
