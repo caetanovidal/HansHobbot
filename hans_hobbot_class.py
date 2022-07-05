@@ -14,28 +14,16 @@ class Hans_hobbot_core(discord.Client):
             return
         
         if message.content.startswith('!hello'):
-            await message.reply("Hello motherfucker!")
+            self.hello(message)
         
         if message.content.startswith('!inspire'):
-            quote = get_quote()
-            await message.reply(quote)
+            self.inspire(message)
         
         if message.content.startswith('!get'):
-            msg = get_twitter_user(message.content)
-            try:
-                user_name = msg
-                last_id = twitter_request.get_last_tweet_id(user_name)
-                last_tweet_msg = twitter_request.get_last_tweet_msg(last_id)
-                await message.channel.send(last_tweet_msg)
-            except Exception as e:
-                print(e)
+            self.get(message)
 
         if message.content.startswith('!w2g'):
-            try:
-                link_w2g = create_sala_w2g(message)
-                await message.reply(link_w2g)
-            except Exception as e:
-                print(e)
+            self.w2g(message)
     
         if message.content.startswith('!upw2g'):
             update_room(message)
@@ -44,11 +32,7 @@ class Hans_hobbot_core(discord.Client):
             add_to_playlist(message)
 
         if message.content.startswith('!btc'):
-            try:
-                msg = btc_request.request_helper()
-                await message.reply(msg)
-            except Exception as e:
-                print(e)
+            self.btc(message)
 
         if message.content.startswith("!help"):
             msg = """
@@ -63,3 +47,35 @@ class Hans_hobbot_core(discord.Client):
                 await message.channel.send(msg)
             except Exception as e:
                 print(e)
+    
+    async def hello(self, message):
+        await message.reply("Hello motherfucker!")
+    
+    async def inspire(self, message):
+        quote = get_quote()
+        await message.reply(quote)
+
+    async def get(self, message):
+        msg = get_twitter_user(message.content)
+        try:
+            user_name = msg
+            last_id = twitter_request.get_last_tweet_id(user_name)
+            last_tweet_msg = twitter_request.get_last_tweet_msg(last_id)
+            await message.channel.send(last_tweet_msg)
+        except Exception as e:
+            print(e)
+               
+    async def w2g(message):
+        try:
+            link_w2g = create_sala_w2g(message)
+            await message.reply(link_w2g)
+        except Exception as e:
+            print(e) 
+    
+    async def btc(message):
+        try:
+            msg = btc_request.request_helper()
+            await message.reply(msg)
+        except Exception as e:
+            print(e) 
+    
