@@ -14,16 +14,16 @@ class Hans_hobbot_core(discord.Client):
             return
         
         if message.content.startswith('!hello'):
-            self.hello(message)
+            await self.hello(message)
         
         if message.content.startswith('!inspire'):
-            self.inspire(message)
+            await self.inspire(message)
         
         if message.content.startswith('!get'):
-            self.get(message)
+            await self.get(message)
 
         if message.content.startswith('!w2g'):
-            self.w2g(message)
+            await self.w2g(message)
     
         if message.content.startswith('!upw2g'):
             update_room(message)
@@ -32,7 +32,7 @@ class Hans_hobbot_core(discord.Client):
             add_to_playlist(message)
 
         if message.content.startswith('!btc'):
-            self.btc(message)
+            await self.btc(message)
 
         if message.content.startswith("!help"):
             msg = """
