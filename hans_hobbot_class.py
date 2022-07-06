@@ -65,14 +65,14 @@ class Hans_hobbot_core(discord.Client):
         except Exception as e:
             print(e)
                
-    async def w2g(message):
+    async def w2g(self, message):
         try:
             link_w2g = create_sala_w2g(message)
             await message.reply(link_w2g)
         except Exception as e:
             print(e) 
     
-    async def btc(message):
+    async def btc(self, message):
         try:
             msg = btc_request.request_helper()
             await message.reply(msg)
