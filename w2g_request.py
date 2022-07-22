@@ -15,7 +15,7 @@ def create_sala_w2g(message):
     paylodJson = {"w2g_api_key": os.getenv('API_KEY_W2G'), 'share': url, 'bg_color': '#02000a', 'bg_opacity': '50'}
     r = requests.post("https://w2g.tv/rooms/create.json", headers=payloadHeader, json=paylodJson)
     
-    stream_key = format_json_link(r)
+    stream_key = format_json_link(r.json())
     
     user_id = message.author.id
     add_dict_user_stream_key(user_id, stream_key)
@@ -44,8 +44,7 @@ def add_to_playlist(message):
         print(e)
 
 def format_json_link(request):
-    r = request.json()
-    stream_key = r['streamkey']
+    stream_key = request['streamkey']
     return stream_key
 
 def add_dict_user_stream_key(stream_key, user_id):
