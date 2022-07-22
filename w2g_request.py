@@ -12,15 +12,14 @@ payloadHeader = {'Accept': 'application/json', 'Content-type': 'application/json
 
 def create_sala_w2g(message):
     url = get_link_youtube(message.content)
-    user_id = message.author.id
     paylodJson = {"w2g_api_key": os.getenv('API_KEY_W2G'), 'share': url, 'bg_color': '#02000a', 'bg_opacity': '50'}
-    
     r = requests.post("https://w2g.tv/rooms/create.json", headers=payloadHeader, json=paylodJson)
-    r = r.json()
-    stream_key = r['streamkey']
     
-    dict_user_streamkey[user_id] = stream_key
+    stream_key = format_json_link(r)
     
+    user_id = message.author.id
+    add_dict_user_stream_key(user_id, stream_key)
+        
     return f"https://w2g.tv/rooms/{stream_key}"
 
 def update_room(message):
@@ -43,3 +42,12 @@ def add_to_playlist(message):
         requests.post(url_post, headers=payloadHeader, json=payloadJson)
     except Exception as e:
         print(e)
+
+def format_json_link(request):
+    r = request.json()
+    r = r.json()
+    stream_key = r['streamkey']
+    return stream_key
+
+def add_dict_user_stream_key(stream_key, user_id):
+    dict_user_streamkey[user_id] = stream_key

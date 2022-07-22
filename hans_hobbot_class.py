@@ -56,9 +56,8 @@ class Hans_hobbot_core(discord.Client):
         await message.reply(quote)
 
     async def get(self, message):
-        msg = get_twitter_user(message.content)
+        user_name = get_twitter_user(message.content)
         try:
-            user_name = msg
             last_id = twitter_request.get_last_tweet_id(user_name)
             last_tweet_msg = twitter_request.get_last_tweet_msg(last_id)
             await message.channel.send(last_tweet_msg)
