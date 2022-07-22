@@ -45,7 +45,6 @@ def add_to_playlist(message):
 
 def format_json_link(request):
     r = request.json()
-    r = r.json()
     stream_key = r['streamkey']
     return stream_key
 
