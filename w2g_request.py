@@ -18,7 +18,7 @@ def create_sala_w2g(message):
     stream_key = format_json_link(r.json())
     
     user_id = message.author.id
-    add_dict_user_stream_key(user_id, stream_key)
+    dict_user_streamkey[user_id] = stream_key
         
     return f"https://w2g.tv/rooms/{stream_key}"
 
@@ -35,17 +35,17 @@ def update_room(message):
 
 def add_to_playlist(message):
     url_video = get_link_youtube(message.content)
+    title = message.embeds[0].title
     try:
         streak_key = dict_user_streamkey[message.author.id]
         url_post = f"https://w2g.tv/rooms/{streak_key}/playlists/current/playlist_items/sync_update"
-        payloadJson = {"w2g_api_key": os.getenv('API_KEY_W2G'), "add_items": [{"url": url_video, "title": "Hello"}]}
+        payloadJson = {"w2g_api_key": os.getenv('API_KEY_W2G'), "add_items": [{"url": url_video, "title": title}]}
         requests.post(url_post, headers=payloadHeader, json=payloadJson)
     except Exception as e:
         print(e)
+    finally:
+        return f"O video *{title}* foi adicionado na playlist com sucesso!"
 
 def format_json_link(request):
     stream_key = request['streamkey']
     return stream_key
-
-def add_dict_user_stream_key(stream_key, user_id):
-    dict_user_streamkey[user_id] = stream_key

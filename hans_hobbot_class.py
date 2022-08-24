@@ -29,7 +29,8 @@ class Hans_hobbot_core(discord.Client):
             update_room(message)
 
         if message.content.startswith('!addw2g'):
-            add_to_playlist(message)
+            msg = add_to_playlist(message)
+            await message.reply(msg)
 
         if message.content.startswith('!btc'):
             await self.btc(message)
