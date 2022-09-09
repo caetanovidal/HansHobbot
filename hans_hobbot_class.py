@@ -96,7 +96,7 @@ class Hans_robot(commands.Cog):
         await message.reply(quote)
 
     @commands.command()
-    async def stream(self, ctx, *, url):
+    async def play(self, ctx, *, url):
         """Streams from a url (same as yt, but doesn't predownload)"""
 
         async with ctx.typing():
@@ -121,7 +121,7 @@ class Hans_robot(commands.Cog):
 
         await ctx.voice_client.disconnect()
 
-    @stream.before_invoke
+    @play.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
