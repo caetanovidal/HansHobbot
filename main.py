@@ -17,7 +17,7 @@ async def main():
     async with bot: 
         load_dotenv()
         await bot.add_cog(Hans_robot(bot))
-        await bot.start((os.getenv("DISCORD_TEST_NET")))
+        await bot.start((os.getenv("DISCORD_KEY")))
 
 asyncio.run(main())
 
