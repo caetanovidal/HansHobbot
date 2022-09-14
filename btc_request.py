@@ -1,5 +1,7 @@
 from concurrent.futures import process
+import string
 from requests import request
+import discord
 import json
 import locale
 import requests
@@ -48,14 +50,14 @@ def set_money_symbol(currency):
     return "U$" 
     
 def msg_to_discord(msg_usd, msg_brl):
-    mensagem_discord = f"""
-    >>> **Bitcoin Ticker**
-    *```{msg_usd}
+    mensagem_discord = f"""```
+{msg_usd.get_message()[0]}
 --------------------------
-    {msg_brl}```*
+{msg_brl.get_message()[0]}```
     """
+    embend = discord.Embed(title="Bitcoin Ticker", color=msg_brl.get_color(), description=mensagem_discord)
     
-    return mensagem_discord
+    return embend
 
 def btc_to_msg(response):
     btc_helper = btc_request_helpr(response)
@@ -69,7 +71,9 @@ Preço       {btc_helper.money_symbol} {btc_helper.price()}
 60d         {btc_helper.percentage_two_month()}
 90d         {btc_helper.percentage_three_month()}
 """
-    return(formated)
+
+    formated_class = msg_btc_embend(formated, btc_helper.color_red_green())
+    return(formated_class)
 
 
 class btc_request_helpr():
@@ -129,3 +133,24 @@ class btc_request_helpr():
             return "▲ +"
         if value < 0:
             return "▼ "
+    
+    def color_red_green(self):
+        value = self.general_info['percent_change_1h']
+        if value >= 0:
+            return 0x00FF00
+        else:
+            return 0xFF0000
+
+class msg_btc_embend():
+    message = ""
+    color = ""
+    
+    def __init__(self, message: string, color) -> None:
+        self.message = message,
+        self.color = color
+    
+    def get_message(self) -> string:
+        return self.message
+    
+    def get_color(self):
+        return self.color

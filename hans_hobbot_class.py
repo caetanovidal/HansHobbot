@@ -82,7 +82,7 @@ class Hans_robot(commands.Cog):
     async def btc(self, ctx):
         try:
             msg = btc_request.request_helper()
-            await ctx.reply(msg)
+            await ctx.send(embed=msg)
         except Exception as e:
             print(e)
             
