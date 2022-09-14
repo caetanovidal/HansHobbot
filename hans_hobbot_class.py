@@ -120,6 +120,12 @@ class Hans_robot(commands.Cog):
         """Stops and disconnects the bot from voice"""
 
         await ctx.voice_client.disconnect()
+        
+    @commands.command()
+    async def test(self, ctx):
+        """Stops and disconnects the bot from voice"""
+        msg = discord.Embed(title="bitcoin", description="omg description", colour=0xFF0000, url="https://www.duolingo.com/learn")
+        await ctx.send(embed=msg)
 
     @play.before_invoke
     async def ensure_voice(self, ctx):
