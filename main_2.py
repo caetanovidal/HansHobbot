@@ -27,4 +27,4 @@ class ErrorTesting(commands.Cog):
     
     
 
-bot.run("OTkxNjg0NTQ0OTM3ODUzMDU5.GBI6C1.aAgVEPMY-clfZ_WPU_fkiw9tcrDXjNrgeCb7Q8")
+bot.run(os.getenv("DISCORD_TEST_NET"))
