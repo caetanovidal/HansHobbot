@@ -3,7 +3,7 @@ import unittest
 from requests import request
 from helpers import get_twitter_user, get_link_youtube
 from twitter_request import get_last_tweet_id, get_last_tweet_msg
-from w2g_request import format_json_link, add_dict_user_stream_key
+from w2g_request import format_json_link
 
 class Helpers_tests(unittest.TestCase):
     def test_get_twitter_user(self):
