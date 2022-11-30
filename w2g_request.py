@@ -20,7 +20,7 @@ def create_sala_w2g(message, ctx):
     user_id = ctx.author.id
     dict_user_streamkey[user_id] = stream_key
         
-    return f"https://api.w2g.tv/rooms/{stream_key}"
+    return f"https://w2g.tv/rooms/{stream_key}"
 
 def update_room(message):
     try:
