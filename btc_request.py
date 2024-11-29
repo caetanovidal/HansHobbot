@@ -8,6 +8,8 @@ import requests
 import os
 from dotenv import load_dotenv
 
+t='test'
+
 url_link = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest'
 load_dotenv()
 
